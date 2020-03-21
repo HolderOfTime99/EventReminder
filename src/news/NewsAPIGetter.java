@@ -1,4 +1,4 @@
-package src.News;
+package news;
 
 import java.util.*;
 import java.io.*;
@@ -11,7 +11,7 @@ public class NewsAPIGetter {
     public static final String API_URL = "http://newsapi.org";
 
     // pre: given a valid authentication String and the desired endpoint,
-    // post: constructs and returns a NewsAPIGetter that will be hooked up
+    // post: constructs and returns a news.NewsAPIGetter that will be hooked up
     //      to said endpoint.
     public NewsAPIGetter(String key, String endpoint) throws Exception {
         this.key = key;
