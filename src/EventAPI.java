@@ -1,4 +1,3 @@
-
 public interface EventAPI {
 
     public void kill();
