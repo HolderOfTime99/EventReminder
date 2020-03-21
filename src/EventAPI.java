@@ -4,6 +4,5 @@ public interface EventAPI {
 
     public void query();
 
-    public EventAPI(String token);
 
 }

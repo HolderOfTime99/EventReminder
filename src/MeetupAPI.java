@@ -1,4 +1,4 @@
-package src;
+/*
 
 public class MeetupAPI implements EventAPI {
 
@@ -10,6 +10,8 @@ public class MeetupAPI implements EventAPI {
     }
 
     public MeetupAPI(String token) {
-        
+
     }
 }
+
+ */

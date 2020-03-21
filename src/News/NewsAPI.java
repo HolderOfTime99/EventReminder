@@ -1,3 +1,10 @@
+package src.News;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class NewsAPI {
     public static void main(String[] args) throws Exception {
         URL url = new URL("http://newsapi.org/v2/top-headlines?country=us&apiKey=190415b2675d41f6b5397bd6e3484f13");
