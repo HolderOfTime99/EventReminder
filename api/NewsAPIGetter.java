@@ -1,11 +1,16 @@
 package api;
 
-import java.util.*;
-import java.io.*;
-import java.net.*;
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class NewsAPIGetter implements APIGetter<Article> {
 
