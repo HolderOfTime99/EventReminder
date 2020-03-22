@@ -1,8 +1,7 @@
-package events;
-
 import java.util.*;
 import java.io.*;
 import java.net.*;
+import news.*;
 
 public class EventfulAPIGetter {
 
@@ -35,13 +34,15 @@ public class EventfulAPIGetter {
                 input = in.readLine();
             }
             in.close();
+            con.disconnect();
             return content.toString();
         } catch (Exception e) {
+            con.disconnect();
             throw new IllegalArgumentException("The parameters passed in were not valid");
         }
     }
 
-    private String paramString(Map<String, String> parameters) {
+    public String paramString(Map<String, String> parameters) {
         String params = "?app_key=" + key + "&";
         int i = parameters.keySet().size();
         for (String type : parameters.keySet()) {
