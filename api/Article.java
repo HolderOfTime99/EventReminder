@@ -10,6 +10,7 @@ public class Article {
     private String source;
     private String date;
 
+
     public Article(String title, String description, String url, String author, String source, String date) {
         this.title = title;
         this.description = Objects.requireNonNullElse(description, "");
