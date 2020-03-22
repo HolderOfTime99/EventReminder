@@ -4,7 +4,7 @@ import java.util.*;
 import java.io.*;
 import java.net.*;
 
-public class EventfulAPIGetter implements APIGetter{
+public class EventfulAPIGetter /*implements APIGetter*/ {
 
     private String key;
     private String endpoint;
@@ -26,21 +26,16 @@ public class EventfulAPIGetter implements APIGetter{
         URL url = new URL(API_URL + endpoint + paramString);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
+        InputStreamReader input;
         try {
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            String input = in.readLine();
-            StringBuilder content = new StringBuilder();
-            while (input != null) {
-                content.append(input);
-                input = in.readLine();
-            }
-            in.close();
-            con.disconnect();
-            return content.toString();
+            input = new InputStreamReader(con.getInputStream());
         } catch (Exception e) {
             con.disconnect();
             throw new IllegalArgumentException("The parameters passed in were not valid");
         }
+        BufferedReader in = new BufferedReader(input);
+        con.disconnect();
+        return null; //readQuery(in);
     }
 
     public String paramString(Map<String, String> parameters) {
@@ -53,6 +48,8 @@ public class EventfulAPIGetter implements APIGetter{
         }
         return params;
     }
+
+    public void changeKey(String newKey) { key = newKey; }
 
     public void setEndpoint(String newEndpoint) {
         endpoint = newEndpoint;
