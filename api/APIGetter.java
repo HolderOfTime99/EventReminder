@@ -1,3 +1,5 @@
+package api;
+
 import java.util.Map;
 
 public interface APIGetter {

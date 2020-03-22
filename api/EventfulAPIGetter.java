@@ -1,9 +1,10 @@
+package api;
+
 import java.util.*;
 import java.io.*;
 import java.net.*;
-import news.*;
 
-public class EventfulAPIGetter {
+public class EventfulAPIGetter implements APIGetter{
 
     private String key;
     private String endpoint;

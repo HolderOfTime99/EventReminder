@@ -1,15 +1,17 @@
+package api;
+
 import java.util.*;
 import java.io.*;
 import java.net.*;
 
-public class NewsAPIGetter {
+public class NewsAPIGetter implements APIGetter{
 
     private String key;
     private String endpoint;
     public static final String API_URL = "http://newsapi.org";
 
     // pre: given a valid authentication String and the desired endpoint,
-    // post: constructs and returns a NewsAPIGetter that will be hooked up
+    // post: constructs and returns a api.NewsAPIGetter that will be hooked up
     //      to said endpoint.
     public NewsAPIGetter(String key, String endpoint) {
         this.endpoint = endpoint;

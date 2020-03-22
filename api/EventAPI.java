@@ -1,3 +1,5 @@
+package api;
+
 public interface EventAPI {
 
     public void kill();
