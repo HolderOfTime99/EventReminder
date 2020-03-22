@@ -1,18 +1,22 @@
 package api;
 
+import java.util.Objects;
+
 public class Article {
     private String title;
     private String description;
     private String url;
     private String author;
     private String source;
+    private String date;
 
-    public Article(String title, String description, String url, String author, String source) {
+    public Article(String title, String description, String url, String author, String source, String date) {
         this.title = title;
-        this.description = description;
+        this.description = Objects.requireNonNullElse(description, "");
         this.url = url;
-        this.author = author;
+        this.author = Objects.requireNonNullElse(author, "");
         this.source = source;
+        this.date = date;
     }
 
     @Override

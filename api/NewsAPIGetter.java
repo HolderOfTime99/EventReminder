@@ -48,19 +48,23 @@ public class NewsAPIGetter implements APIGetter<Article> {
         Article[] result = new Article[arrSize];
         for (int i = 0; i < arrSize; i++) {
             JSONObject element = (JSONObject) arr.get(i);
-            String author = element.get("author").toString();
-            String url = element.get("url").toString();
-            String title = element.get("title").toString();
-            String description = element.get("description").toString();
+            String author = (String) element.get("author");
+            String url = (String) element.get("url");
+            String title = (String) element.get("title");
+            String description = (String) element.get("description");
             JSONObject sourceObject = (JSONObject) element.get("source");
-            String source = sourceObject.get("name").toString();
-            result[i] = new Article(title, description, url, author, source);
+            String source = (String) sourceObject.get("name");
+            String date = element.get("publishedAt").toString().substring(0, 10);
+            result[i] = new Article(title, description, url, author, source, date);
         }
         return result;
     }
 
     public String paramString(Map<String, String> parameters) {
-        String params = "?pageSize=" + PAGE_SIZE + "&";
+        if (parameters.size() == 0) {
+            return "?country=us";
+        }
+        String params = "?";
         int i = parameters.keySet().size();
         for (String type : parameters.keySet()) {
             params += type + "=" + parameters.get(type);
@@ -77,8 +81,7 @@ public class NewsAPIGetter implements APIGetter<Article> {
     public static void main(String[] args) throws Exception {
         APIGetter news = new NewsAPIGetter("190415b2675d41f6b5397bd6e3484f13", "/v2/top-headlines");
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("q", "trump");
-        news.setEndpoint("/v2/top-headlines");
+        //news.setEndpoint("/v2/everything");
         System.out.println(Arrays.toString(news.query(parameters)));
     }
 
