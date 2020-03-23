@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,7 +18,6 @@ public class NewsAPIGetter implements APIGetter<Article> {
     private String endpoint;
     public static final String API_URL = "http://newsapi.org";
     public static final int PAGE_SIZE = 5;
-    public static final String DEFAULT_PARAMETER = "?q=coronavirus";
 
     // pre: given a valid authentication String and the desired endpoint,
     // post: constructs and returns a api.NewsAPIGetter that will be hooked up
@@ -42,10 +42,10 @@ public class NewsAPIGetter implements APIGetter<Article> {
         }
         BufferedReader in = new BufferedReader(reader);
         String json = readQuery(in);
-        return getArticles(json);
+        return getArticleArray(json);
     }
 
-    private Article[] getArticles(String jsonString) throws ParseException {
+    private Article[] getArticleArray(String jsonString) throws ParseException {
         JSONParser parser = new JSONParser();
         JSONObject obj = (JSONObject) parser.parse(jsonString);
         JSONArray arr = (JSONArray) obj.get("articles");
@@ -60,16 +60,16 @@ public class NewsAPIGetter implements APIGetter<Article> {
             JSONObject sourceObject = (JSONObject) element.get("source");
             String source = (String) sourceObject.get("name");
             String dateTime = (String) element.get("publishedAt");
-            String date = dateTime.substring(0, 10); // dateTime format as "yyyy-dd-mmThh:mm:ssZ"
-            String time = dateTime.substring(11, dateTime.length() - 1);
-            result[i] = new Article(title, description, url, author, source, date, time);
+            //String date = dateTime.substring(0, 10); // dateTime format as "yyyy-mm-ddThh:mm:ssZ"
+            //String time = dateTime.substring(11, dateTime.length() - 1);
+            result[i] = new Article(title, description, url, author, source, dateTime);
         }
         return result;
     }
 
     public String paramString(Map<String, String> parameters) {
         if (parameters.size() == 0) {
-            return DEFAULT_PARAMETER;
+            return "?country=us";
         }
         String params = "?";
         int i = parameters.keySet().size();
@@ -86,12 +86,10 @@ public class NewsAPIGetter implements APIGetter<Article> {
     public void setEndpoint(String newEnd) { this.endpoint = newEnd; }
 
     public static void main(String[] args) throws Exception {
-        APIGetter<Article> news = new NewsAPIGetter("190415b2675d41f6b5397bd6e3484f13", "/v2/top-headlines");
+        APIGetter news = new NewsAPIGetter("190415b2675d41f6b5397bd6e3484f13", "/v2/top-headlines");
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("country", "us");
-        parameters.put("q", "coronavirus");
-        Article[] arr = news.query(parameters);
-        System.out.println(arr[0]);
+        //news.setEndpoint("/v2/everything");
+        System.out.println(Arrays.toString(news.query(parameters)));
     }
 
 
