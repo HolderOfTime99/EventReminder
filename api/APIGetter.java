@@ -5,6 +5,7 @@ import java.util.Map;
 
 public interface APIGetter<T> {
 
+    //comment test
     T[] query(Map<String, String> parameters) throws Exception;
 
     String paramString(Map<String, String> parameters);
