@@ -3,10 +3,9 @@ package api;
 import java.io.BufferedReader;
 import java.util.Map;
 
-public interface APIGetter<T> {
+public interface APIGetter<E> {
 
-    //comment test
-    T[] query(Map<String, String> parameters) throws Exception;
+    E[] query(Map<String, String> parameters) throws Exception;
 
     String paramString(Map<String, String> parameters);
 
