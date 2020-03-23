@@ -62,15 +62,4 @@ public class Event {
 
         return ret;
     }
-
-    public static void main(String[] args) throws Exception {
-            Event test = new Event("name", "myhouse", "12345, apple street",
-                    "test 123", "2020-06-24 08:30:00", "2020-06-24 08:30:01",
-                    "www.google.com");
-            System.out.println(test.toString());
-
-    }
-
-
-
 }
