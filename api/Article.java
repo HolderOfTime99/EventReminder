@@ -9,26 +9,29 @@ public class Article {
     private String author;
     private String source;
     private String date;
+    private String time;
 
 
-    public Article(String title, String description, String url, String author, String source, String date) {
+    public Article(String title, String description, String url, String author,
+                   String source, String date, String time) {
         this.title = title;
-        this.description = Objects.requireNonNullElse(description, "");
+        this.description = Objects.requireNonNullElse(description, "N/A");
         this.url = url;
-        this.author = Objects.requireNonNullElse(author, "");
+        this.author = Objects.requireNonNullElse(author, "N/A");
         this.source = source;
         this.date = date;
+        this.time = time;
     }
 
     @Override
     public String toString() {
-        return "Article{" +
-                "title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", url='" + url + '\'' +
-                ", author='" + author + '\'' +
-                ", source='" + source + '\'' +
-                '}';
+        return "Article: " + title + "\n" +
+                "Author: " + author + "\n" +
+                "Source: " + source + "\n" +
+                "Date: " + date + "\n" +
+                "Time: " + time + "\n" +
+                "Description: " +  description + "\n" +
+                "URL:" + url + "\n";
     }
 
     public String getAuthor() {

@@ -59,8 +59,10 @@ public class NewsAPIGetter implements APIGetter<Article> {
             String description = (String) element.get("description");
             JSONObject sourceObject = (JSONObject) element.get("source");
             String source = (String) sourceObject.get("name");
-            String date = element.get("publishedAt").toString().substring(0, 10);
-            result[i] = new Article(title, description, url, author, source, date);
+            String dateTime = (String) element.get("publishedAt");
+            String date = dateTime.substring(0, 10); // dateTime format as "yyyy-mm-ddThh:mm:ssZ"
+            String time = dateTime.substring(11, dateTime.length() - 1);
+            result[i] = new Article(title, description, url, author, source, date, time);
         }
         return result;
     }
