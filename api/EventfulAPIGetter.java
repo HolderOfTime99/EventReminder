@@ -21,7 +21,7 @@ public class EventfulAPIGetter implements APIGetter<Event> {
     // pre: given a valid authentication String and the desired endpoint,
     // post: constructs and returns a interactive client-side object that allows get requests
     //      to said endpoint.
-    public EventfulAPIGetter(String key, String endpoint) throws Exception {
+    public EventfulAPIGetter(String key, String endpoint) {
         this.key = key;
         this.endpoint = endpoint;
     }
