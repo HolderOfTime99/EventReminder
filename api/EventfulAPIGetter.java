@@ -67,8 +67,8 @@ public class EventfulAPIGetter implements APIGetter<Event> {
     public static void main(String[] args) throws Exception {
         EventfulAPIGetter events = new EventfulAPIGetter("zDsLqMh4NJdQtWsw", "/rest/events/search");
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("keywords", "books");
-        parameters.put("location", "San+Diego");
+        parameters.put("keywords", "tech");
+        parameters.put("within", "25");
         System.out.println(Arrays.toString(events.query(parameters)));
     }
 
