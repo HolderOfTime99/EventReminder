@@ -10,22 +10,30 @@ import java.io.*;
 
 public class EventReminderMain {
 
-    public static final String GMAIL_USERNAME = "samberensohn@gmail.com";
-    public static final String GMAIL_PASSWORD = "xxxxxx";
+    public static final String GMAIL_USERNAME = "xxxxxxx";
+    public static final String GMAIL_PASSWORD = "xxxxxxx";
     public static final String NEWS_API_KEY = "190415b2675d41f6b5397bd6e3484f13";
     public static final String NEWS_API_ENDPOINT = "/v2/top-headlines";
     public static final String EVENTFUL_API_KEY = "zDsLqMh4NJdQtWsw";
     public static final String EVENTFUL_API_ENDPOINT = "/rest/events/search";
 
     public static void main(String[] args) throws Exception {
-        List<Map<String, String>> newsParams = getParams(new FileReader("json\\News.json"));
-        List<Map<String, String>> eventParams = getParams(new FileReader("json\\Events.json"));
+        List<Map<String, String>> newsParams = getParams(new FileReader("json" + File.separator + "News.json"));
+        //List<Map<String, String>> eventParams = getParams(new FileReader("json" + File.separator + "Events.json"));
 
 
         APIGetter<Article> news = new NewsAPIGetter(NEWS_API_KEY, NEWS_API_ENDPOINT);
-        APIGetter<Event> events = new EventfulAPIGetter(EVENTFUL_API_KEY, EVENTFUL_API_ENDPOINT);
+        //APIGetter<Event> events = new EventfulAPIGetter(EVENTFUL_API_KEY, EVENTFUL_API_ENDPOINT);
         GmailSender mailer = new GmailSender(GMAIL_USERNAME, GMAIL_PASSWORD);
 
+        //System.out.println(newsParams);
+
+        Article[] newsArticles = news.query(newsParams.get(0));
+        //System.out.println(Arrays.toString(newsArticles));
+        //Event[] eventArray = events.query(eventParams.get(0));
+
+        mailer.send(GMAIL_USERNAME, "First Article Run", Arrays.toString(newsArticles));
+        //System.out.println(Arrays.toString(eventArray));
     }
 
     public static List<Map<String, String>> getParams(FileReader jsonFile) throws Exception {
@@ -47,4 +55,6 @@ public class EventReminderMain {
         }
         return result;
     }
+
+
 }

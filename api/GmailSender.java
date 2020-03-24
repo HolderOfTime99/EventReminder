@@ -8,7 +8,7 @@ public class GmailSender {
 
     private String username;
     private String password;
-    public static final String HOST_SERVER_ADDRESS = "smpt.gmail.com";
+    public static final String HOST_SERVER_ADDRESS = "smtp.gmail.com";
     public static final String HOST_SERVER_SSL_PORT = "465";
 
 
@@ -40,6 +40,11 @@ public class GmailSender {
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.port", HOST_SERVER_SSL_PORT);
         return properties;
+    }
+
+    public static void main(String[] args) throws Exception {
+        GmailSender sender = new GmailSender("username", "password");
+        sender.send("username", "subject", "content");
     }
 
 }
