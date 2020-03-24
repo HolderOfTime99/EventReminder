@@ -18,6 +18,7 @@ public class NewsAPIGetter implements APIGetter<Article> {
     private String endpoint;
     public static final String API_URL = "http://newsapi.org";
     public static final int PAGE_SIZE = 5;
+    public static final String DEFAULT_PARAMETER = "?q=coronavirus";
 
     // pre: given a valid authentication String and the desired endpoint,
     // post: constructs and returns a api.NewsAPIGetter that will be hooked up
@@ -69,7 +70,7 @@ public class NewsAPIGetter implements APIGetter<Article> {
 
     public String paramString(Map<String, String> parameters) {
         if (parameters.size() == 0) {
-            return "?country=us";
+            return DEFAULT_PARAMETER;
         }
         String params = "?";
         int i = parameters.keySet().size();
@@ -86,11 +87,9 @@ public class NewsAPIGetter implements APIGetter<Article> {
     public void setEndpoint(String newEnd) { this.endpoint = newEnd; }
 
     public static void main(String[] args) throws Exception {
-        APIGetter news = new NewsAPIGetter("190415b2675d41f6b5397bd6e3484f13", "/v2/top-headlines");
+        APIGetter<Article> news = new NewsAPIGetter("190415b2675d41f6b5397bd6e3484f13", "/v2/top-headlines");
         Map<String, String> parameters = new HashMap<>();
         //news.setEndpoint("/v2/everything");
         System.out.println(Arrays.toString(news.query(parameters)));
     }
-
-
 }
