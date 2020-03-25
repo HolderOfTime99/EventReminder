@@ -10,14 +10,17 @@ import java.io.*;
 
 public class EventReminderMain {
 
-    public static final String GMAIL_USERNAME = "xxxxxxx";
-    public static final String GMAIL_PASSWORD = "xxxxxxx";
+    public static String GMAIL_USERNAME = "xxxxxxx";
+    public static String GMAIL_PASSWORD = "xxxxxxx";
+    public static String GMAIL_TO = "xxxxxxx";
     public static final String NEWS_API_KEY = "190415b2675d41f6b5397bd6e3484f13";
     public static final String NEWS_API_ENDPOINT = "/v2/top-headlines";
     public static final String EVENTFUL_API_KEY = "zDsLqMh4NJdQtWsw";
     public static final String EVENTFUL_API_ENDPOINT = "/rest/events/search";
 
     public static void main(String[] args) throws Exception {
+        getEmailInfo();
+
         List<Map<String, String>> newsParams = getParams(new FileReader("json" + File.separator + "News.json"));
         //List<Map<String, String>> eventParams = getParams(new FileReader("json" + File.separator + "Events.json"));
 
@@ -32,7 +35,7 @@ public class EventReminderMain {
         //System.out.println(Arrays.toString(newsArticles));
         //Event[] eventArray = events.query(eventParams.get(0));
 
-        mailer.send(GMAIL_USERNAME, "First Article Run", Arrays.toString(newsArticles));
+        mailer.send(GMAIL_TO, "First Article Run", Arrays.toString(newsArticles));
         //System.out.println(Arrays.toString(eventArray));
     }
 
@@ -55,6 +58,18 @@ public class EventReminderMain {
         }
         return result;
     }
+
+    public static void getEmailInfo() throws Exception{
+        File file = new File("email.txt");
+        BufferedReader br = new BufferedReader(new FileReader(file));
+
+        GMAIL_USERNAME = br.readLine();
+        GMAIL_PASSWORD = br.readLine();
+        GMAIL_TO = br.readLine();
+        System.out.println(GMAIL_USERNAME + GMAIL_PASSWORD);
+
+    }
+
 
 
 }
