@@ -3,25 +3,20 @@ package api;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Event {
-    private String name;
+public class Event extends APIResult {
     private String venue;
     private String address;
     private String date;
-    private String description;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private String url;
     private final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public Event(String name, String venue, String address, String description,
                  String startTime, String endTime, String url) {
-        this.name = name;
+        super(name, description, url);
         this.venue = venue;
         this.address = address;
-        this.description = description;
-        this.url = url;
         if (!startTime.isEmpty()){
             this.startTime = LocalDateTime.parse(startTime, TIME_FORMAT);
             this.date = this.startTime.format(DATE_FORMAT);
@@ -51,13 +46,13 @@ public class Event {
         }
 
 
-        ret = "Event: " + name + "\n" +
+        ret = "Event: " + getTitle() + "\n" +
                 "------------------------------------\n" +
                 "Time: " + time + "\n" +
                 "Venue: " + venue + "\n" +
                 "Address " + address + "\n" +
-                "Description:" + description + "\n" +
-                "URL: " + url + "\n";
+                "Description:" + getDescription() + "\n" +
+                "URL: " + getUrl() + "\n";
 
 
         return ret;

@@ -12,11 +12,12 @@ import java.util.*;
 import java.io.*;
 import java.net.*;
 
-public class EventfulAPIGetter implements APIGetter<Event> {
+public class EventfulAPIGetter implements APIGetter<APIResult> {
 
     private String key;
     private String endpoint;
     public static final String API_URL = "http://api.eventful.com";
+    public static final int PAGE_SIZE = 5;
 
     // pre: given a valid authentication String and the desired endpoint,
     // post: constructs and returns a interactive client-side object that allows get requests
@@ -82,8 +83,9 @@ public class EventfulAPIGetter implements APIGetter<Event> {
     public Event[] getEvents(Document doc){
         Event[] ret;
         NodeList events = doc.getElementsByTagName("event");
-        ret = new Event[events.getLength()];
-        for (int i =0; i < events.getLength(); i++){
+        int size = Math.min(events.getLength(), PAGE_SIZE);
+        ret = new Event[size];
+        for (int i =0; i < size; i++){
             Node cur = events.item(i);
             if (cur.getNodeType() == Node.ELEMENT_NODE){
                 Element event = (Element) cur;

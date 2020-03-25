@@ -4,10 +4,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-public class Article {
-    private String title;
-    private String description;
-    private String url;
+public class Article extends APIResult {
     private String author;
     private String source;
     private ZonedDateTime time;
@@ -17,9 +14,7 @@ public class Article {
 
     public Article(String title, String description, String url, String author,
                    String source, String time) {
-        this.title = title;
-        this.description = Objects.requireNonNullElse(description, "N/A");
-        this.url = url;
+        super(title, url, description);
         this.author = Objects.requireNonNullElse(author, "N/A");
         this.source = source;
         this.time = ZonedDateTime.parse(time);
@@ -27,13 +22,13 @@ public class Article {
 
     @Override
     public String toString() {
-        return "Article: " + title + "\n" +
+        return "Article: " + getTitle() + "\n" +
                 "Author: " + author + "\n" +
                 "Source: " + source + "\n" +
                 "Date: " + time.format(DATE_FORMAT) + "\n" +
                 "Time: " + time.format(TIME_FORMAT) + "\n" +
-                "Description: " +  description + "\n" +
-                "URL:" + url + "\n";
+                "Description: " +  getDescription() + "\n" +
+                "URL:" + getUrl() + "\n";
     }
 
     public String getAuthor() {
@@ -44,15 +39,4 @@ public class Article {
         return source;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getUrl() {
-        return url;
-    }
 }

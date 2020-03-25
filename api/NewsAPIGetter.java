@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class NewsAPIGetter implements APIGetter<Article> {
+public class NewsAPIGetter implements APIGetter<APIResult> {
 
     private String key;
     private String endpoint;
@@ -88,7 +88,7 @@ public class NewsAPIGetter implements APIGetter<Article> {
     public void setEndpoint(String newEnd) { this.endpoint = newEnd; }
 
     public static void main(String[] args) throws Exception {
-        APIGetter<Article> news = new NewsAPIGetter("190415b2675d41f6b5397bd6e3484f13", "/v2/top-headlines");
+        APIGetter<APIResult> news = new NewsAPIGetter("190415b2675d41f6b5397bd6e3484f13", "/v2/top-headlines");
         Map<String, String> parameters = new HashMap<>();
         //news.setEndpoint("/v2/everything");
         System.out.println(Arrays.toString(news.query(parameters)));
