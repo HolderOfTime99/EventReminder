@@ -20,6 +20,7 @@ public class EventReminderMain {
 
     public static void main(String[] args) throws Exception {
         getEmailInfo();
+        getKeys();
 
         List<Map<String, String>> newsParams = getParams(new FileReader("json" + File.separator + "News.json"));
         List<Map<String, String>> eventParams = getParams(new FileReader("json" + File.separator + "Events.json"));
