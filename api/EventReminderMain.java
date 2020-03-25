@@ -13,9 +13,9 @@ public class EventReminderMain {
     public static String username = "xxxxxxxxxxxxxxx";
     public static String gmailPassword = "xxxxxxxxx";
     public static String mailTo = "xxxxxxxx";
-    public static String newsApiKey = "190415b2675d41f6b5397bd6e3484f13";
+    public static String newsApiKey;
     public static final String NEWS_API_ENDPOINT = "/v2/top-headlines";
-    public static String eventfulApiKey = "zDsLqMh4NJdQtWsw";
+    public static String eventfulApiKey;
     public static final String EVENTFUL_API_ENDPOINT = "/rest/events/search";
 
     public static void main(String[] args) throws Exception {
