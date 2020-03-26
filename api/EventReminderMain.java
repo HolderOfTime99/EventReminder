@@ -10,13 +10,14 @@ import java.io.*;
 
 public class EventReminderMain {
 
-    public static String username = "xxxxxxxxxxxxxxx";
-    public static String gmailPassword = "xxxxxxxxx";
-    public static String mailTo = "xxxxxxxx";
-    public static String newsApiKey;
     public static final String NEWS_API_ENDPOINT = "/v2/top-headlines";
-    public static String eventfulApiKey;
     public static final String EVENTFUL_API_ENDPOINT = "/rest/events/search";
+
+    public static String username;
+    public static String gmailPassword;
+    public static String mailTo;
+    public static String newsApiKey;
+    public static String eventfulApiKey;
 
     public static void main(String[] args) throws Exception {
         getEmailInfo();
@@ -85,7 +86,7 @@ public class EventReminderMain {
     }
 
     public static void getEmailInfo() throws Exception{
-        File file = new File("emails.txt");
+        File file = new File("email.txt");
         BufferedReader br = new BufferedReader(new FileReader(file));
 
         username = br.readLine();
@@ -97,8 +98,8 @@ public class EventReminderMain {
 
     public static void getKeys() throws Exception{
 
-        File newsFile = new File("api/newsKey.txt");
-        File eventFile = new File("api/eventKey.txt");
+        File newsFile = new File("newsKey.txt");
+        File eventFile = new File("eventKey.txt");
 
         BufferedReader newsBr = new BufferedReader(new FileReader(newsFile));
         BufferedReader eventBr = new BufferedReader(new FileReader(eventFile));

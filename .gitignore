@@ -1,5 +1,9 @@
 # Default ignored files
 /.idea/workspace.xml
 email.txt
+eventKey.txt
+newsKey.txt
+*.class
 api/eventKey.txt
 api/newsKey.tx
+*.swp
