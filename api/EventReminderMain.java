@@ -85,7 +85,7 @@ public class EventReminderMain {
     }
 
     public static void getEmailInfo() throws Exception{
-        File file = new File("email.txt");
+        File file = new File("emails.txt");
         BufferedReader br = new BufferedReader(new FileReader(file));
 
         username = br.readLine();
@@ -97,8 +97,8 @@ public class EventReminderMain {
 
     public static void getKeys() throws Exception{
 
-        File newsFile = new File("newsKey.txt");
-        File eventFile = new File("eventKey.txt");
+        File newsFile = new File("api/newsKey.txt");
+        File eventFile = new File("api/eventKey.txt");
 
         BufferedReader newsBr = new BufferedReader(new FileReader(newsFile));
         BufferedReader eventBr = new BufferedReader(new FileReader(eventFile));
