@@ -1,7 +1,5 @@
 package api;
 
-import java.util.Objects;
-
 public class APIResult {
     private String title;
     private String url;
@@ -10,7 +8,11 @@ public class APIResult {
     public APIResult(String title, String url, String description) {
         this.title = title;
         this.url = url;
-        this.description = Objects.requireNonNullElse(description, "N/A");
+        this.description = assignDescription(description);
+    }
+
+    private static String assignDescription(String newDescript) {
+        return newDescript == null || newDescript.equals("") || newDescript.startsWith(" <") ?  "N/A" : newDescript;
     }
 
     public String getTitle() {

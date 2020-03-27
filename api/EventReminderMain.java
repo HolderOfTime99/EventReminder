@@ -35,24 +35,44 @@ public class EventReminderMain {
 
         GmailSender mailer = new GmailSender(username, gmailPassword);
 
-        String content = getContent(newsQueries, eventQueries);
+        String content = getContent(newsQueries, eventQueries, newsParams, eventParams);
 
         mailer.send(mailTo, "Daily Email Update", content);
 
     }
 
-    public static String getContent(List<APIResult[]> news, List<APIResult[]> events) {
-        String content = "Events: \n";
-        for (APIResult[] arr : events) {
-            content += Arrays.toString(arr);
+    public static String getContent(List<APIResult[]> news, List<APIResult[]> events,
+                                    List<Map<String, String>> newsKeywords,
+                                    List<Map<String, String>> eventKeywords) throws Exception {
+        BufferedReader in = new BufferedReader(new FileReader("email_format.txt"));
+        String content = in.readLine() + "\n";
+        String line = "";
+        while (!line.equals("Articles:\n")) {
+            line = in.readLine() + "\n";
+            content += line;
         }
-        content += "\n :::::::::::::::::::::::::::::: \n" +
-                    "Articles:\n";
-        for (APIResult[] arr : news) {
-            content += Arrays.toString(arr);
+        content += getAPIResults(news, newsKeywords);
+        content += in.readLine() + "\n";
+        content += getAPIResults(events, eventKeywords);
+        while (in.ready()) {
+            content += in.readLine();
         }
         return content;
+    }
 
+    public static String getAPIResults(List<APIResult[]> queryResults, List<Map<String, String>> parameters) {
+        String result = "";
+        int listIndex = 0;
+        for (Map<String, String> queryParams : parameters) {
+            String searchParams = formatParameters(queryParams);
+            result += "\n" + searchParams + "\n";
+            for (int i = 0; i < queryResults.get(listIndex).length; i++) {
+                result += queryResults.get(listIndex)[i];
+                result += "-----------------------------------------------------\n";
+            }
+            listIndex++;
+        }
+        return result;
     }
 
     public static List<APIResult[]> queries(APIGetter<APIResult> getter,
@@ -85,6 +105,20 @@ public class EventReminderMain {
         return result;
     }
 
+    public static String formatParameters(Map<String, String> params) {
+        String result = "Search Parameters-";
+        int i = params.keySet().size();
+        for (String key : params.keySet()) {
+            String value = params.get(key).replace('+', ' ').replace('-', ' ');
+            result += " " + key + " = " + value;
+            i--;
+            if (i != 0) {
+                result += ",";
+            }
+        }
+        return result + "\n";
+    }
+
     public static void getEmailInfo() throws Exception{
         File file = new File("email.txt");
         BufferedReader br = new BufferedReader(new FileReader(file));
@@ -92,14 +126,12 @@ public class EventReminderMain {
         username = br.readLine();
         gmailPassword = br.readLine();
         mailTo = br.readLine();
-        System.out.println(username + gmailPassword);
-
     }
 
     public static void getKeys() throws Exception{
 
-        File newsFile = new File("newsKey.txt");
-        File eventFile = new File("eventKey.txt");
+        File newsFile = new File("api" + File.separator + "newsKey.txt");
+        File eventFile = new File("api" + File.separator + "eventKey.txt");
 
         BufferedReader newsBr = new BufferedReader(new FileReader(newsFile));
         BufferedReader eventBr = new BufferedReader(new FileReader(eventFile));

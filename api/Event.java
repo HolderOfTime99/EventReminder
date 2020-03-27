@@ -14,7 +14,7 @@ public class Event extends APIResult {
 
     public Event(String name, String venue, String address, String description,
                  String startTime, String endTime, String url) {
-        super(name, description, url);
+        super(name, url, description);
         this.venue = venue;
         this.address = address;
         if (!startTime.isEmpty()){
@@ -47,14 +47,11 @@ public class Event extends APIResult {
 
 
         ret = "Event: " + getTitle() + "\n" +
-                "------------------------------------\n" +
                 "Time: " + time + "\n" +
                 "Venue: " + venue + "\n" +
                 "Address " + address + "\n" +
-                "Description:" + getDescription() + "\n" +
+                "Description: " + getDescription() + "\n" +
                 "URL: " + getUrl() + "\n";
-
-
         return ret;
     }
 }

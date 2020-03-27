@@ -28,7 +28,6 @@ public class NewsAPIGetter implements APIGetter<APIResult> {
 
     public Article[] query(Map<String, String> parameters) throws Exception {
         String paramString = paramString(parameters);
-        System.out.println(API_URL + endpoint + paramString);
         URL url = new URL(API_URL + endpoint + paramString);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");

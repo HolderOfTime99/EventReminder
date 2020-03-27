@@ -36,7 +36,7 @@ Next, to automate the script to run in the background of your computer:
 Edit [local.eventreminder.automator.plist](local.eventreminder.automator.plist) by replacing:
  
  * /PATH/TO/autoemailer.sh
- * /PATH/TO/WORKINGDIRECTORY/
+ * /PATH/TO/WORKING_DIRECTORY/
  
  Additionally, values under StartCalendarInterval can be changed to select time that the script runs.
  By default, queries are ran at 5AM.
@@ -48,6 +48,24 @@ mv local.eventreminder.automator.plist /Library/LaunchDaemons/
 launchctl load -w /Library/LaunchDaemons/local.eventreminder.automator.plist
 ```
 
+###Windows Users:
+
+Edit [scheduleEventReminderWindows.ps1](scheduleEventReminderWindows.ps1) by replacing:
+
+* \PATH\TO\automateEventReminderWindows.ps1
+* \PATH\TO\WORKING_DIRECTORY\
+* DESIRED_RUN_TIME
+
+Note: DESIRED_RUN_TIME must be replaced with valid DateTime format such as:
+```
+$trigger = New-ScheduledTaskTrigger -Daily -At 8:30am
+```
+
+Finally, run this script in a PowerShell session from the working directory to schedule the task:
+
+```
+.\scheduleEventReminderWindows.ps1
+```
 ## Creators
 
 **Sam Berensohn**
