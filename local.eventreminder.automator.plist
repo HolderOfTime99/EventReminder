@@ -17,7 +17,7 @@
     <key>StandardOutPath</key>
     <string>/tmp/com.user.imagecopier.stdout</string>
     <key>WorkingDirectory</key>
-    <string>/PATH/TO/SCRIPT/</string>
+    <string>/PATH/TO/WORKINGDIRECTORY/</string>
     <key>StartCalendarInterval</key>
     <dict>
         <key>Hour</key>
