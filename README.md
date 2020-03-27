@@ -31,7 +31,7 @@ List of parameters can be found at:
 
 Next, to automate the script to run in the background of your computer:
 
-####Mac Users:
+#### Mac Users:
 
 Edit [local.eventreminder.automator.plist](local.eventreminder.automator.plist) by replacing:
  
@@ -48,7 +48,7 @@ mv local.eventreminder.automator.plist /Library/LaunchDaemons/
 launchctl load -w /Library/LaunchDaemons/local.eventreminder.automator.plist
 ```
 
-###Windows Users:
+### Windows Users:
 
 Edit [scheduleEventReminderWindows.ps1](scheduleEventReminderWindows.ps1) by replacing:
 
