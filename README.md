@@ -52,8 +52,8 @@ launchctl load -w /Library/LaunchDaemons/local.eventreminder.automator.plist
 
 Edit [scheduleEventReminderWindows.ps1](scheduleEventReminderWindows.ps1) by replacing:
 
-* \PATH\TO\automateEventReminderWindows.ps1
-* \PATH\TO\WORKING_DIRECTORY\
+* PATH\TO\automateEventReminderWindows.ps1
+* PATH\TO\WORKING_DIRECTORY\
 * DESIRED_RUN_TIME
 
 Note: DESIRED_RUN_TIME must be replaced with valid DateTime format such as:

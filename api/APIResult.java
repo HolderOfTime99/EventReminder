@@ -12,7 +12,9 @@ public class APIResult {
     }
 
     private static String assignDescription(String newDescript) {
-        return newDescript == null || newDescript.equals("") || newDescript.startsWith(" <") ?  "N/A" : newDescript;
+        if (newDescript == null) { newDescript = ""; }
+        if (newDescript.length() > 150) { newDescript = newDescript.substring(0, 150) + "..."; } // shorter than 30 words
+        return newDescript.equals("") || newDescript.startsWith(" <") ?  "N/A" : newDescript;
     }
 
     public String getTitle() {
