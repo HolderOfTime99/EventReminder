@@ -65,22 +65,12 @@ public class EventfulAPIGetter implements APIGetter<APIResult> {
         endpoint = newEndpoint;
     }
 
-    public static void main(String[] args) throws Exception {
-        EventfulAPIGetter events = new EventfulAPIGetter("zDsLqMh4NJdQtWsw", "/rest/events/search");
-        Map<String, String> parameters = new HashMap<>();
-        parameters.put("keywords", "tech");
-        parameters.put("within", "25");
-        System.out.println(Arrays.toString(events.query(parameters)));
-    }
-
-
-
-    public Event[] processXML(String xml) throws Exception {
+    private Event[] processXML(String xml) throws Exception {
         Document doc = loadXMLFromString(xml);
         return getEvents(doc);
     }
 
-    public Event[] getEvents(Document doc){
+    private Event[] getEvents(Document doc){
         Event[] ret;
         NodeList events = doc.getElementsByTagName("event");
         int size = Math.min(events.getLength(), PAGE_SIZE);
@@ -109,8 +99,7 @@ public class EventfulAPIGetter implements APIGetter<APIResult> {
     }
 
 
-
-    public static Document loadXMLFromString(String xml) throws Exception {
+    private static Document loadXMLFromString(String xml) throws Exception {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         InputSource is = new InputSource(new StringReader(xml));

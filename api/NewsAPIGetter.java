@@ -8,8 +8,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 
 public class NewsAPIGetter implements APIGetter<APIResult> {
@@ -62,8 +60,6 @@ public class NewsAPIGetter implements APIGetter<APIResult> {
             JSONObject sourceObject = (JSONObject) element.get("source");
             String source = (String) sourceObject.get("name");
             String dateTime = (String) element.get("publishedAt");
-            //String date = dateTime.substring(0, 10); // dateTime format as "yyyy-mm-ddThh:mm:ssZ"
-            //String time = dateTime.substring(11, dateTime.length() - 1);
             result[i] = new Article(title, description, url, author, source, dateTime);
         }
         return result;
@@ -87,10 +83,4 @@ public class NewsAPIGetter implements APIGetter<APIResult> {
 
     public void setEndpoint(String newEnd) { this.endpoint = newEnd; }
 
-    public static void main(String[] args) throws Exception {
-        APIGetter<APIResult> news = new NewsAPIGetter("190415b2675d41f6b5397bd6e3484f13", "/v2/top-headlines");
-        Map<String, String> parameters = new HashMap<>();
-        //news.setEndpoint("/v2/everything");
-        System.out.println(Arrays.toString(news.query(parameters)));
-    }
 }

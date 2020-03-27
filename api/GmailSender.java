@@ -42,9 +42,4 @@ public class GmailSender {
         return properties;
     }
 
-    public static void main(String[] args) throws Exception {
-        GmailSender sender = new GmailSender("username", "password");
-        sender.send("username", "subject", "content");
-    }
-
 }
