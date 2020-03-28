@@ -1,6 +1,15 @@
-$action = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument 'PATH\TO\automateEventReminderWindows.ps1' -WorkingDirectory 'PATH\TO\WORKING_DIRECTORY\'
 
-$trigger = New-ScheduledTaskTrigger -Daily -At DESIRED_RUN_TIME
+#########   USER VARIABLES   ###########
+$runtime = DESIRED_RUN_TIME
+
+$pathTo = 'PATH\TO\automateEventReminderWindows.ps1'
+
+$workingDirectory = 'PATH\TO\WORKING_DIRECTORY\'
+#########################################
+
+$action = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument $pathTo -WorkingDirectory $workingDirectory
+
+$trigger = New-ScheduledTaskTrigger -Daily -At $runtime
 
 $settings = New-ScheduledTaskSettingsSet -WakeToRun
 

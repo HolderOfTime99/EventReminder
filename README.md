@@ -1,6 +1,6 @@
 # Event Reminder
 
-A daily news and event reminder that sends a email with queried information. 
+A daily news and event reminder that sends, exclusively from Gmail accounts, an email with queried information. 
 
 ### Prerequisites
 
@@ -21,7 +21,7 @@ Begin by cloning the repo:
 git clone https://github.com/HolderOfTime99/EventReminder.git
 ```
 
-Navigate to Events.xlsx and News.xlsx in the ExcelSheets folder. Each sheet in the excel files corresponds with one 
+Navigate to [Events.xlsx](ExcelSheets/Events.xlsx) and [News.xlsx](ExcelSheets/News.xlsx) in the ExcelSheets folder. Each sheet in the excel files corresponds with one 
 query with the name of the parameter in the first column and value in the second. Edit the given files for 
 desired queries. 
 
@@ -72,7 +72,7 @@ Edit [scheduleEventReminderWindows.ps1](scheduleEventReminderWindows.ps1) by rep
 
 Note: DESIRED_RUN_TIME must be replaced with valid DateTime format such as:
 ```
-$trigger = New-ScheduledTaskTrigger -Daily -At 8:30am
+$runtime = '8:30am'
 ```
 
 Finally, run this script in a PowerShell session from the working directory to schedule the task:
