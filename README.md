@@ -29,6 +29,20 @@ List of parameters can be found at:
 * [Eventful](https://api.eventful.com/docs/events/search)
 * [News](https://newsapi.org/docs/endpoints/top-headlines)
 
+Before you can execute, you'll need to provide information outlined in the following text files:
+
+* [emails.txt](emails.txt)
+* [NewsApiKey.txt](api/NewsApiKey.txt)
+* [EventsApiKey.txt](api/EventsApiKey.txt)
+
+Note: You will need to allow less secure app access to the GMAIL_TO_ADDRESS account for automated sending. This can be done at:
+* [GMAIL Allow Less Secure App Access](https://support.google.com/accounts/answer/6010255?hl=en)
+
+API Keys can be obtained at the following websites:
+* [Eventful API](https://api.eventful.com/keys)
+* [News API](https://newsapi.org/docs/get-started)
+
+
 Next, to automate the script to run in the background of your computer:
 
 #### Mac Users:
