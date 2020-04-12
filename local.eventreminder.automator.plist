@@ -11,7 +11,7 @@
     <key>UserName</key>
     <string>zizhensong</string>
     <key>Program</key>
-    <string>/PATH/TO/PATH/autoemailer.sh</string>
+    <string>/PATH/TO/autoemailer.sh</string>
     <key>StandardErrorPath</key>
     <string>/tmp/com.user.imagecopier.stderr</string>
     <key>StandardOutPath</key>

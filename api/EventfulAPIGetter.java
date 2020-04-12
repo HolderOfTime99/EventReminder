@@ -12,6 +12,9 @@ import java.util.*;
 import java.io.*;
 import java.net.*;
 
+/**
+ * This is an object that represents an event returned by API call
+ */
 public class EventfulAPIGetter implements APIGetter<APIResult> {
 
     private String key;
