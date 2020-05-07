@@ -13,7 +13,8 @@ import java.io.*;
 import java.net.*;
 
 /**
- * This is an object that represents an event returned by API call
+ * This class interfaces with the Eventful API to retrieve the specified
+ * categories of event details.
  */
 public class EventfulAPIGetter implements APIGetter<APIResult> {
 
@@ -22,17 +23,27 @@ public class EventfulAPIGetter implements APIGetter<APIResult> {
     public static final String API_URL = "http://api.eventful.com";
     public static final int PAGE_SIZE = 5;
 
-    // pre: given a valid authentication String and the desired endpoint,
-    // post: constructs and returns a interactive client-side object that allows get requests
-    //      to said endpoint.
+    /**
+     * Returns an EventfulAPIGetter that will be initialized with the given
+     * authentication key, and will be hooked up to the specified endpoint.
+     *
+     * @param key A valid authentication key from https://api.eventful.com/keys
+     * @param endpoint A String endpoint from eventful website.
+     */
     public EventfulAPIGetter(String key, String endpoint) {
         this.key = key;
         this.endpoint = endpoint;
     }
 
-    // pre: given a map of parameters (mapping type to value) for the query that
-    //      follows the Eventful api formatting
-    // post: returns the XML string of results for the given query
+    /**
+     * Queries the given endpoint of api.eventful.com based on the given parameters.
+     *
+     * @param parameters A Map from api.eventful.com parameter keywords to their values.
+     * @return An array of Event that are the results from querying the api with
+     *         the given parameters.
+     * @throws Exception throws an IllegalArgumentException when the parameters are
+     *         not formatted to the api.eventful.com requirements.
+     */
     public Event[] query(Map<String, String> parameters) throws Exception {
         String paramString = paramString(parameters);
         URL url = new URL(API_URL + endpoint + paramString);
@@ -51,6 +62,13 @@ public class EventfulAPIGetter implements APIGetter<APIResult> {
         return processXML(query);
     }
 
+    /**
+     * Formats the parameters according to the api.eventful.com requirements to be appended
+     * to the API query URL.
+     *
+     * @param parameters A Map from api.eventful.com parameter keywords to their values.
+     * @return formatted String of parameters to be appended to the API URL
+     */
     public String paramString(Map<String, String> parameters) {
         String params = "?app_key=" + key + "&";
         int i = parameters.keySet().size();
@@ -62,8 +80,18 @@ public class EventfulAPIGetter implements APIGetter<APIResult> {
         return params;
     }
 
+    /**
+     * Changes the authentication key for the api.eventful.com API.
+     *
+     * @param newKey a String valid key from api.eventful.com.
+     */
     public void changeKey(String newKey) { key = newKey; }
 
+    /**
+     * Changes the endpoint to be queried from api.eventful.com API.
+     *
+     * @param newEndpoint a String endpoint from api.eventful.com.
+     */
     public void setEndpoint(String newEndpoint) {
         endpoint = newEndpoint;
     }

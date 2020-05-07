@@ -1,3 +1,17 @@
+# xlsx2json.py
+# ---------
+
+"""
+xlsx2json.py reads excel sheets from '/ExcelSheets/' with query information and converts to json file
+root_dir \
+        xlsx2json.py
+        ExcelSheets \
+                Events.xlsx
+                News.xlsx
+        json \
+                Events.xlsx
+                News.xlsx
+"""
 import xlrd
 import os
 from collections import OrderedDict
