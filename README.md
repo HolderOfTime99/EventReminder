@@ -45,9 +45,9 @@ API Keys can be obtained at the following websites:
 
 Next, to automate the script to run in the background of your computer:
 
-#### Mac Users:
+### Mac Users:
 
-Edit [local.eventreminder.automator.plist](local.eventreminder.automator.plist) by replacing:
+Edit [local.eventreminder.automator.plist](automation/local.eventreminder.automator.plist) by replacing:
  
  * /PATH/TO/autoemailer.sh
  * /PATH/TO/WORKING_DIRECTORY/
@@ -64,7 +64,7 @@ launchctl load -w /Library/LaunchDaemons/local.eventreminder.automator.plist
 
 ### Windows Users:
 
-Edit [scheduleEventReminderWindows.ps1](scheduleEventReminderWindows.ps1) by replacing:
+Edit [scheduleEventReminderWindows.ps1](automation/scheduleEventReminderWindows.ps1) by replacing:
 
 * PATH\TO\automateEventReminderWindows.ps1
 * PATH\TO\WORKING_DIRECTORY\
